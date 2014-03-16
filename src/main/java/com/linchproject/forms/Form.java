@@ -39,6 +39,15 @@ public class Form extends HashMap<String, Values> {
         return this;
     }
 
+    public Form put(String key, String value) {
+        return put(key, new String[] {value});
+    }
+
+    public Form put(String key, String[] values) {
+        this.put(key, new Values(values));
+        return this;
+    }
+
     public void validate() {
         for (Map.Entry<String, Field> entry : fields.entrySet()) {
             String name = entry.getKey();
