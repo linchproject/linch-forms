@@ -32,7 +32,7 @@ public class Form extends HashMap<String, Values> {
         return fields.get(name);
     }
 
-    public Form fill(Map<String, String[]> parameterMap) {
+    public Form bind(Map<String, String[]> parameterMap) {
         for (Map.Entry<String, String[]> entry: parameterMap.entrySet()) {
             this.put(entry.getKey(), new Values(entry.getValue()));
         }
@@ -49,6 +49,8 @@ public class Form extends HashMap<String, Values> {
     }
 
     public void validate() {
+        valid = true;
+
         for (Map.Entry<String, Field> entry : fields.entrySet()) {
             String name = entry.getKey();
             Field field = entry.getValue();
@@ -60,8 +62,8 @@ public class Form extends HashMap<String, Values> {
             }
 
             for (Validator validator : field.getValidators()) {
-                if (!validator.isValid(values.getAll(), this)) {
-                    values.setError(getText(name, validator.getKey()));
+                if (!validator.isValid(values.getValues(), this)) {
+                    values.setError(getText(name, validator.getErrorKey()));
                     valid = false;
                     break;
                 }

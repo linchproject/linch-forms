@@ -7,6 +7,7 @@ import java.util.Iterator;
  * @author Georg Schmidl
  */
 public class Values implements Iterable<String> {
+
     private String[] values;
 
     private String error;
@@ -25,14 +26,14 @@ public class Values implements Iterable<String> {
 
     @Override
     public String toString() {
-        return get();
+        return getValue();
     }
 
-    public String get() {
+    public String getValue() {
         return values != null &&  values.length > 0 ? values[0] : null;
     }
 
-    public String[] getAll() {
+    public String[] getValues() {
         return values;
     }
 
