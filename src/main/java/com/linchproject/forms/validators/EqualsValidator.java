@@ -17,13 +17,13 @@ public class EqualsValidator implements Validator {
     }
 
     @Override
-    public String getKey() {
+    public String getErrorKey() {
         return "equals";
     }
 
     @Override
     public boolean isValid(String[] values, Form form) {
-        String[] otherValues = form.get(otherFieldName) != null ? form.get(otherFieldName).getAll() : null;
+        String[] otherValues = form.get(otherFieldName) != null ? form.get(otherFieldName).getValues() : null;
         return Arrays.equals(values, otherValues);
     }
 }

@@ -9,7 +9,7 @@ import com.linchproject.forms.Validator;
 public class EmailValidator implements Validator {
 
     @Override
-    public String getKey() {
+    public String getErrorKey() {
         return "email";
     }
 

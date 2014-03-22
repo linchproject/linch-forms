@@ -5,7 +5,7 @@ package com.linchproject.forms;
  */
 public interface Validator {
 
-    public String getKey();
+    public String getErrorKey();
 
     public boolean isValid(String[] values, Form form);
 }
