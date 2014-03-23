@@ -1,6 +1,6 @@
 package com.linchproject.forms;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -10,23 +10,15 @@ public class Field {
 
     private Form form;
 
-    private List<Validator> validators = new ArrayList<Validator>();
+    private List<Validator> validators;
 
-    public Field(Form form) {
+    public Field(Form form, Validator... validators) {
         this.form = form;
-    }
-
-    public Field addValidator(Validator validator) {
-        this.validators.add(validator);
-        return this;
+        this.validators = Arrays.asList(validators);
     }
 
     public List<Validator> getValidators() {
         return validators;
-    }
-
-    public Field addField(String name) {
-        return form.addField(name);
     }
 
     public Form form() {

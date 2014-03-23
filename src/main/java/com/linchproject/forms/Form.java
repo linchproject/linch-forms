@@ -15,17 +15,16 @@ public class Form extends HashMap<String, Values> {
     private Texter texter;
 
     public Form() {
-
     }
 
     public Form(Texter texter) {
         this.texter = texter;
     }
 
-    public Field addField(String name) {
-        Field field = new Field(this);
+    public Form addField(String name, Validator... validators) {
+        Field field = new Field(this, validators);
         fields.put(name, field);
-        return field;
+        return this;
     }
 
     public Field getField(String name) {

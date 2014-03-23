@@ -16,8 +16,7 @@ public class FormTest {
     @Test
     public void testBind() throws Exception {
         Form form = new Form()
-                .addField("a")
-                .form();
+                .addField("a");
 
         Map<String, String[]> parameterMap = new HashMap<String, String[]>();
         parameterMap.put("a", new String[] {"b"});
@@ -31,9 +30,7 @@ public class FormTest {
     @Test
     public void testValidate() throws Exception {
         Form form = new Form()
-                .addField("a")
-                .addValidator(new RequiredValidator())
-                .form();
+                .addField("a", new RequiredValidator());
 
         form.validate();
         assertFalse(form.isValid());
