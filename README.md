@@ -5,31 +5,24 @@ Linch forms lets you create forms where you can define a list of validators for 
 ##Create a form
 
     Form userForm = new Form()
-            .addField("username")
-                .addValidator(new RequiredValidator())
-                .addValidator(new UserExistsValidator())
+            .addField("username", new RequiredValidator(), new UserExistsValidator())
             .addField("firstName")
             .addField("lastName")
-            .addField("email")
-                .addValidator(new RequiredValidator())
-                .addValidator(new EmailValidator())
-            .addField("password")
-                .addValidator(new RequiredValidator())
-            .addField("confirmPassword")
-                .addValidator(new EqualsValidator("password"))
-            .form();
+            .addField("email", new RequiredValidator(), new EmailValidator())
+            .addField("password", new RequiredValidator())
+            .addField("confirmPassword", new EqualsValidator("password"));
 
 ##Fill parameters from request and validate
 
-    userForm.fill(parameterMap).validate();
+    userForm.bind(parameterMap).validate();
 
     if (userForm.isValid()) {
         User user = new User();
-        user.setUsername(userForm.get("username").get());
-        user.setFirstName(userForm.get("firstName").get());
-        user.setLastName(userForm.get("lastName").get());
-        user.setEmail(userForm.get("email").get());
-        user.setPassword(passwordEncryptor.encryptPassword(userForm.get("password").get()));
+        user.setUsername(userForm.get("username").getValue());
+        user.setFirstName(userForm.get("firstName").getValue());
+        user.setLastName(userForm.get("lastName").getValue());
+        user.setEmail(userForm.get("email").getValue());
+        user.setPassword(passwordEncryptor.encryptPassword(userForm.get("password").getValue()));
         userDao.save(user);
 
         // redirect to view
